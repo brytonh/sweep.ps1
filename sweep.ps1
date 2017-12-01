@@ -1,5 +1,5 @@
-﻿### Ping sweep script in powershell ###   
-### Bryton J. Herdes		brytonjherdes@gmail.com		12-1-2017 ###
+﻿###Ping sweep script in powershell###   
+###Bryton Herdes###
 
 #Prompt for user to enter starting IP and ending IP
 $begin=Read-Host -Prompt "Starting IP"
@@ -118,10 +118,10 @@ while($i -le 14) {
 }
 
 
-#####################################PING SWEEP CODE BEGINS#########################################
-
 Write-Host `nStarting ping sweep between IPs:
 Write-Host -fore Cyan  $octetOne"."$octetTwo"."$octetThree"."$octetFour "and" $octetOneEnd"."$octetTwoEnd"."$octetThreeEnd"."$octetFourEnd
+
+#####################################PING SWEEP CODE BEGINS#########################################
 
 [int]$octetThreeInt = $octetThree
 [int]$octetThreeEndInt = $octetThreeEnd
@@ -137,8 +137,7 @@ if($octetThreeEndInt -gt $octetThreeInt) {
     while($octetFourInt -le 254) {
         $IP="$octetOne.$octetTwo.$octetThreeInt.$octetFourInt"
 
-        #Print to screen successful ping to IP's that have True output of testconnection. Could be altered 
-        #to notify you of False outputs (unsuccessful pings)
+        #output
         if((test-connection -quiet -count 1 -computername $IP) -eq $True) {
             Write-Host Successful ping to $IP
             Add-Content C:/Users/"$env:UserName"/Desktop/success.txt "$IP"
@@ -153,7 +152,7 @@ if($octetThreeEndInt -gt $octetThreeInt) {
             exit
         }
 
-        #increment the begin variable to test next IP
+        #increment the octet 4 variable to test next IP
         $octetFourInt++
     }
     if($octetFourInt -eq 255) {
@@ -168,8 +167,7 @@ else {
 
        $IP="$octetOne.$octetTwo.$octetThree.$octetFourInt"
 
-    #Print to screen successful ping to IP's that have True output of testconnection. Could be altered 
-    #to notify you of False outputs (unsuccessful pings)
+    #output
     if((test-connection -quiet -count 1 -computername $IP) -eq $True) {
         Write-Host Successful ping to $IP
         Add-Content C:/Users/"$env:UserName"/Desktop/success.txt "$IP"
@@ -179,7 +177,7 @@ else {
         Add-Content C:/Users/"$env:UserName"/Desktop/failed.txt "$IP"
     }
   
-    #increment the begin variable to test next IP
+    #increment the octet 4 variable to test next IP
     $octetFourInt++
   }
 }    
