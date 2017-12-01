@@ -1,5 +1,5 @@
-﻿###Ping sweep script in powershell###   
-###Bryton Herdes###
+﻿### Ping sweep script in powershell ###   
+### Bryton J. Herdes		brytonjherdes@gmail.com		12-1-2017 ###
 
 #Prompt for user to enter starting IP and ending IP
 $begin=Read-Host -Prompt "Starting IP"
