@@ -1,8 +1,6 @@
 ﻿###Ping sweep script in powershell###   
 ###Bryton Herdes###
 
-#Write-Host Script can only handle one subnet at once at this time. Further Development is in progress.`n
-
 #Prompt for user to enter starting IP and ending IP
 $begin=Read-Host -Prompt "Starting IP"
 $end=Read-Host -Prompt "Ending IP"
@@ -15,6 +13,8 @@ $end=Read-Host -Prompt "Ending IP"
 
 #Search for the first octet length, find and same as "j"
 [int]$i=0
+
+#Track octet 1 of start
 while ($begin[$i] -ne ".") {
     $octetOne+=$begin[$i]
     $i++;
@@ -26,6 +26,7 @@ while ($begin[$i] -ne ".") {
 #Bring i to next non "."
 $i++
 
+#Track octet 2 of start
 while($begin[$i] -ne ".") {
     $octetTwo+=$begin[$i]
     $i++
@@ -37,8 +38,8 @@ $i++
 #Create string to hold octet 3
 [string]$octetThree=""
 
+#Track octet 3 of start
 while($begin[$i] -ne ".") {
-    #Write-Host $begin[$i]
     $octetThree += $begin[$i]
     $i++
 }
@@ -49,8 +50,8 @@ $i++
 #Create string to hold octet 4
 [string]$octetFour=""
 
+#Track octet 4 of start
 while($i -le 14) {
-   # Write-Host $begin[$i]
     if($begin[$i] -ne ".") {
         $octetFour += $begin[$i]
         $i++
@@ -68,6 +69,8 @@ while($i -le 14) {
 
 #Search for the first octet length, find and same as "j"
 [int]$i=0
+
+#Track octet 1 of end
 while ($end[$i] -ne ".") {
     $octetOneEnd+=$end[$i]
     $i++;
@@ -79,6 +82,7 @@ while ($end[$i] -ne ".") {
 #Bring i to next non "."
 $i++
 
+#Track octet 2 of end
 while($end[$i] -ne ".") {
     $octetTwoEnd+=$end[$i]
     $i++
@@ -90,6 +94,7 @@ $i++
 #Create string to hold octet 3
 [string]$octetThreeEnd=""
 
+#Track octet 3 of end
 while($end[$i] -ne ".") {
     $octetThreeEnd += $end[$i]
     $i++
@@ -101,8 +106,8 @@ $i++
 #Create string to hold octet 4
 [string]$octetFourEnd=""
 
+#Track octet 4 of end
 while($i -le 14) {
-   # Write-Host $begin[$i]
     if($end[$i] -ne ".") {
         $octetFourEnd += $end[$i]
         $i++
@@ -131,6 +136,7 @@ if($octetThreeEndInt -gt $octetThreeInt) {
  while($octetThreeEndInt -ge $octetThreeInt) {
     while($octetFourInt -le 254) {
         $IP="$octetOne.$octetTwo.$octetThreeInt.$octetFourInt"
+
         #Print to screen successful ping to IP's that have True output of testconnection. Could be altered 
         #to notify you of False outputs (unsuccessful pings)
         if((test-connection -quiet -count 1 -computername $IP) -eq $True) {
@@ -147,7 +153,7 @@ if($octetThreeEndInt -gt $octetThreeInt) {
             exit
         }
 
-        #incrememnt the begin variable to test next IP
+        #increment the begin variable to test next IP
         $octetFourInt++
     }
     if($octetFourInt -eq 255) {

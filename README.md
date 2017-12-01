@@ -3,7 +3,9 @@
 This PowerShell Ping Sweep script is intended to allow for user specification of the IP range. 
 
 This is ideal for any person dealing with a network larger than CIDR /24. If you are dealing with 
-less hosts, sweep.ps1 will still fulfill your needs. 
+less hosts, sweep.ps1 will still fulfill your needs.
+
+65,024 hosts can be supported at once (a whole /16 network).
 
 Output of Data:
 1. Successful/failed pings printed to console
