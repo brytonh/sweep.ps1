@@ -1,6 +1,6 @@
 # sweep.ps1
 
-This PowerShell Ping Sweep script is intended to allow for user specification of the IP range. 
+This PowerShell Ping Sweep script is intended to allow for user specification of the IP range, and to allow for a large number of hosts. 
 
 Ideal for any person dealing with a network larger than CIDR /24. If you are dealing with 
 less hosts, sweep.ps1 will still fulfill your needs.
