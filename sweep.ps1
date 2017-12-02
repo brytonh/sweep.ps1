@@ -121,7 +121,7 @@ while($i -le 14) {
 Write-Host `nStarting ping sweep between IPs:
 Write-Host -fore Cyan  $octetOne"."$octetTwo"."$octetThree"."$octetFour "and" $octetOneEnd"."$octetTwoEnd"."$octetThreeEnd"."$octetFourEnd
 
-#####################################PING SWEEP CODE BEGINS#########################################
+#####################################PING SWEEP CODE BEGINS########################################
 
 [int]$octetThreeInt = $octetThree
 [int]$octetThreeEndInt = $octetThreeEnd
